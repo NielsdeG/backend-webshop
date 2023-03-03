@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @CrossOrigin
 @Controller
@@ -30,18 +31,41 @@ public class ProductController {
             return ResponseHandler.generateResponse("geen producten gevonden", HttpStatus.NOT_FOUND, null);
         }
         return ResponseHandler.generateResponse("succesvol producten gevonden", HttpStatus.OK, products);
+    }
 
+    @GetMapping(params="id")
+    public ResponseEntity<Object> getProduct(@RequestParam UUID id){
+        Optional<Product> product = this.productService.getProduct(id);
+        if(product.isEmpty()){
+            return ResponseHandler.generateResponse("geen product gevonden", HttpStatus.NOT_FOUND, null);
+        }
+        return ResponseHandler.generateResponse("succesvol producten gevonden", HttpStatus.OK, product.get());
     }
 
     @PutMapping("/save")
     public ResponseEntity<Object> updateProduct(@RequestBody Product newProduct){
-        System.out.println("lol");
         Optional<Product> oldProduct = this.productService.getProduct(newProduct.getId());
         if (oldProduct.isPresent()){
             this.productService.saveProduct(newProduct);
             return ResponseHandler.generateResponse("product succsvol geupodate", HttpStatus.OK, newProduct);
         }
         return ResponseHandler.generateResponse("fout in het updaten van het product", HttpStatus.BAD_REQUEST, null);
+    }
+
+    @DeleteMapping(path = "/delete" ,params="id")
+    public ResponseEntity<Object> deleteProduct(@RequestParam UUID id){
+        Optional<Product> product = this.productService.getProduct(id);
+        if (product.isPresent()){
+            this.productService.delete(id);
+            return ResponseHandler.generateResponse("product succsvol gedeleted", HttpStatus.OK, null);
+        }
+        return ResponseHandler.generateResponse("fout in het updaten van het product", HttpStatus.BAD_REQUEST, null);
+    }
+
+    @PostMapping(path = "/create")
+    public ResponseEntity<Object> createProduct(@RequestBody Product product){
+        this.productService.createProduct(product);
+        return ResponseHandler.generateResponse("product gecreerd", HttpStatus.OK, null);
     }
 
 

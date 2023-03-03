@@ -35,6 +35,14 @@ public class Product {
         this.image = image;
     }
 
+    public Product(String title, float price, String category, String description, String image) {
+        this.title = title;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.image = image;
+    }
+
     public Product() {
 
     }

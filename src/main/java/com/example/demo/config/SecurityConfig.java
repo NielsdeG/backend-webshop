@@ -29,7 +29,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**", "/api/v1/product").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/product/**").permitAll()
 //                .requestMatchers("/api/v1/controller/").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()

@@ -28,4 +28,17 @@ public class ProductService {
         this.productDAO.saveProduct(product);
     }
 
+    public void delete(UUID id){
+        this.productDAO.delete(id);
+    }
+
+    public void createProduct(Product p) {
+        Product product = new Product();
+        product.setCategory(p.getCategory());
+        product.setDescription(p.getDescription());
+        product.setImage(p.getImage());
+        product.setTitle(p.getTitle());
+        product.setPrice(p.getPrice());
+        this.productDAO.saveProduct(product);
+    }
 }

@@ -30,4 +30,10 @@ public class ProductDAO {
     public void saveProduct(Product product){
         this.productRepository.save(product);
     }
+
+    public void delete(UUID id){
+        Optional<Product> obj = this.productRepository.findById(id);
+        Product product = obj.get();
+        this.productRepository.delete(product);
+    }
 }

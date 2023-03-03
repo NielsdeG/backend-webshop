@@ -44,7 +44,6 @@ public class AuthService {
     }
 
     public Object authenticate(AuthenticationRequest request) {
-        System.out.println("damn");
         authmanager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getName(), request.getPassword()));
         var user = repository.findByName(request.getName()).orElseThrow();
