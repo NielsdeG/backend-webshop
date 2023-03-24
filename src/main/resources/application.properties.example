@@ -1,16 +1,13 @@
-spring.datasource.url=jdbc:postgresql://localhost:5432/webshop
-spring.datasource.username=postgres
-spring.datasource.password=postgres
 spring.datasource.driver-class-name= org.postgresql.Driver
-
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
-
 spring.jpa.hibernate.ddl-auto = update
-
 sping.jpa.database = postgresql
 
+spring.datasource.url=jdbc:postgresql://
+spring.datasource.username=
+spring.datasource.password=
 
-JWT_SECRET= 3677397A24432646294A404E635266546A576E5A7234753778214125442A472D
+JWT_SECRET=
 # time in milliseconds
 JWT_EXPIRATION_TIME = 3600000
